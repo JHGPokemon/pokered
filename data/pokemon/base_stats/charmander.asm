@@ -1,6 +1,6 @@
 	db DEX_CHARMANDER ; pokedex id
 
-	db  255,  52,  43,  65,  50
+	db  39,  52,  43,  65,  50
 	;   hp  atk  def  spd  spc
 
 	db FIRE, FIRE ; type

@@ -293,7 +293,11 @@ FreezeBurnParalyzeEffect:
 	ld hl, BurnedText
 	jp PrintText
 .freeze2
-; hyper beam bits aren't reseted for opponent's side
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	; FreezeBurnParalyzeEffect.freeze2
+	; "Haze can prevent a Pokémon from attacking after curing freeze" FIX
+	call ClearHyperBeam
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
 	ld a, 1 << FRZ
 	ld [wBattleMonStatus], a
 	ld hl, FrozenText

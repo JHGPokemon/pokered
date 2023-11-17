@@ -1189,6 +1189,11 @@ SlideDownFaintedMonPic:
 	push de
 	push hl
 	ld b, 6 ; number of rows
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	; SlideDownFaintedMonPic:.slideStepLoop
+	; "Sliding of trainer and Pokémon graphics can cause tearing" FIX part 1
+	xor a
+	ld [hAutoBGTransferEnabled], a
 .rowLoop
 	push bc
 	push hl
@@ -1213,6 +1218,9 @@ SlideDownFaintedMonPic:
 	add hl, bc
 	ld de, SevenSpacesText
 	call PlaceString
+	ld a, 1
+	ld [hAutoBGTransferEnabled], a
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX part 1
 	ld c, 2
 	call DelayFrames
 	pop hl
@@ -1238,6 +1246,11 @@ SlideTrainerPicOffScreen:
 	push bc
 	push hl
 	ld b, 7 ; number of rows
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	; SlideTrainerPicOffScreen:.slideStepLoop
+	; "Sliding of trainer and Pokémon graphics can cause tearing" FIX part 2
+	xor a
+	ld [hAutoBGTransferEnabled], a
 .rowLoop
 	push hl
 	ldh a, [hSlideAmount]
@@ -1263,6 +1276,9 @@ SlideTrainerPicOffScreen:
 	add hl, de
 	dec b
 	jr nz, .rowLoop
+	ld a, 1
+	ld [hAutoBGTransferEnabled], a
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX part 2
 	ld c, 2
 	call DelayFrames
 	pop hl
@@ -2368,6 +2384,12 @@ PartyMenuOrRockOrRun:
 	predef StatusScreen
 	predef StatusScreen2
 ; now we need to reload the enemy mon pic
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	; PartyMenuOrRockOrRun.partyMonWasSelected
+	; "Minimize and Substitute can cause sprite glitches with enemy Pokémon" FIX
+	ld a, 1
+	ldh [hWhoseTurn], a
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
 	ld a, [wEnemyBattleStatus2]
 	bit HAS_SUBSTITUTE_UP, a ; does the enemy mon have a substitute?
 	ld hl, AnimationSubstitute

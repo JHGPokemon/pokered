@@ -33,9 +33,19 @@ FoundHiddenItemText::
 	ld c, a
 	ld b, FLAG_SET
 	predef FlagActionPredef
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	; FoundHiddenItemText
+	; "The 'acquired an item' jingle can sometimes be cut off" FIX
+	ld a, [wAudioFadeOutControl]
+	push af
+	xor a
+	ld [wAudioFadeOutControl], a
 	ld a, SFX_GET_ITEM_2
 	call PlaySoundWaitForCurrent
 	call WaitForSoundToFinish
+	pop af
+	ld [wAudioFadeOutControl], a
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
 	jp TextScriptEnd
 .bagFull
 	call WaitForTextScrollButtonPress ; wait for button press

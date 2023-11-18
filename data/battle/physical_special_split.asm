@@ -24,7 +24,7 @@ SpecialToPhysicalMoves:
         db THUNDERPUNCH
 ; Ice
         db ICE_PUNCH
-; Ghost 
-        db LICK
+; Dark
+        db BITE
         db -1 ; end
 

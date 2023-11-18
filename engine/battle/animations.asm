@@ -165,18 +165,12 @@ PlayAnimation:
 	xor a
 	ldh [hROMBankTemp], a ; it looks like nothing reads this
 	ld [wSubAnimTransform], a
-; If [wAltAnimationID] = 0, then we play an attack animation
-	ld a, [wAltAnimationID]
-	and a
-	ld de, AlternativeAnimationPointers
-	jr nz, .gotAnimationType
 	ld a, [wAnimationID] ; get animation number
-	ld de, AttackAnimationPointers  ; animation command stream pointers
-.gotAnimationType
-	dec a	
+	dec a
 	ld l, a
 	ld h, 0
 	add hl, hl
+	ld de, AttackAnimationPointers  ; animation command stream pointers
 	add hl, de
 	ld a, [hli]
 	ld h, [hl]
@@ -271,9 +265,6 @@ PlayAnimation:
 	vc_hook Stop_reducing_move_anim_flashing_Guillotine
 	jr .animationLoop
 .AnimationOver
-;;; make sure we zero out the alt animation ID after we're finished with the animation.
-    xor a
-    ld [wAltAnimationID], a
 	ret
 
 LoadSubanimation:
@@ -416,16 +407,11 @@ MoveAnimation:
 	push af
 	call WaitForSoundToFinish
 	call SetAnimationPalette
-; check alt animation first
-	ld a, [wAltAnimationID]
-	and a
-	jr nz, .checkTossAnimation
 	ld a, [wAnimationID]
 	and a
 	jr z, .animationFinished
 
 	; if throwing a Poké Ball, skip the regular animation code
-.checkTossAnimation
 	cp TOSS_ANIM
 	jr nz, .moveAnimation
 	ld de, .animationFinished
@@ -2631,7 +2617,7 @@ TossBallAnimation:
 .done
 	ld a, b
 .PlayNextAnimation
-	ld [wAltAnimationID], a
+	ld [wAnimationID], a
 	push bc
 	push hl
 	call PlayAnimation
@@ -2648,12 +2634,12 @@ TossBallAnimation:
 
 .BlockBall
 	ld a, TOSS_ANIM
-	ld [wAltAnimationID], a
+	ld [wAnimationID], a
 	call PlayAnimation
 	ld a, SFX_FAINT_THUD
 	call PlaySound
 	ld a, BLOCKBALL_ANIM
-	ld [wAltAnimationID], a
+	ld [wAnimationID], a
 	jp PlayAnimation
 
 PlayApplyingAttackSound:

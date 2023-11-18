@@ -345,7 +345,11 @@ CooltrainerFAI:
 	; The intended 25% chance to consider switching will not apply.
 	; Uncomment the line below to fix this.
 	cp 25 percent + 1
-	; ret nc
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	; CooltrainerFAI
+	; "CoolTrainerFAI switches all the time at 10-20% health instead of 25%" FIX
+	ret nc
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
 	ld a, 10
 	call AICheckIfHPBelowFraction
 	jp c, AIUseHyperPotion
@@ -387,7 +391,14 @@ KogaAI:
 BlaineAI:
 	cp 25 percent + 1
 	ret nc
-	jp AIUseSuperPotion
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	; BlaineAI
+	; "Blaine uses Super Potion even when his Pokémon aren't below 10% health" FIX
+	ld a, 10
+	call AICheckIfHPBelowFraction
+	ret nc
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	jp AIUseSuperPotion ;;;; SHOULD USE DIFFERENT POTION, WILL LOOK INTO
 
 SabrinaAI:
 	cp 25 percent + 1
@@ -549,6 +560,13 @@ AIPrintItemUseAndUpdateHPBar:
 	xor a
 	ld [wHPBarType], a
 	predef UpdateHPBar2
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	; AIPrintItemUseAndUpdateHPBar
+	; "AI trainer HUD does not update when it uses healing items" FIX part 2
+	push af
+	farcall DrawEnemyHUDAndHPBar
+	pop af
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX part 2
 	jp DecrementAICount
 
 AISwitchIfEnoughMons:
@@ -633,6 +651,13 @@ AICureStatus:
 	ld [wEnemyMonStatus], a ; clear status of active enemy
 	ld hl, wEnemyBattleStatus3
 	res 0, [hl]
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	; AICureStatus
+	; "AI trainer HUD does not update when it uses healing items" FIX part 1
+	push af
+	farcall DrawEnemyHUDAndHPBar
+	pop af
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX part 1
 	ret
 
 AIUseXAccuracy: ; unused

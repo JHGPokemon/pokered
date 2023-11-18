@@ -58,11 +58,17 @@ GymTrashScript:
 
 	ldh [hGymTrashCanRandNumMask], a
 	push hl
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	; PrintTrashText.openFirstLock
+	; "Lt. Surge's gym trash cans do not use the proper trash cans for the locks" FIX
+.tryagain
 	call Random
 	swap a
 	ld b, a
 	ldh a, [hGymTrashCanRandNumMask]
 	and b
+	jr z, .tryagain
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
 	dec a
 	pop hl
 

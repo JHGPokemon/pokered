@@ -703,11 +703,6 @@ wSlotMachineWheel2TopTile:: db
 wSlotMachineWheel3BottomTile:: db
 wSlotMachineWheel3MiddleTile:: db
 wSlotMachineWheel3TopTile:: db
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; StartBattleLevels::
-; "Random items can cause Pokémon to evolve" FIX part 3
-wStartBattleLevels:: ds PARTY_LENGTH ; which is 6 bytes
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX part 3
 wPayoutCoins:: dw
 ; These flags are set randomly and control when the wheels stop.
 ; bit 6: allow the player to win in general

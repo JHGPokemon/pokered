@@ -34,11 +34,6 @@ AddItemToInventory_::
 	cp b ; does the current item in the table match the item being added?
 	jp z, .increaseItemQuantity ; if so, increase the item's quantity
 	inc hl
-	;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; AddItemToInventory_.notAtEndOfInventory
-	; "Having a stack of 99 items and adding more can cause memory corruption" FIX part 1
-.checkIfEndOfInventory
-	;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX part 1
 	ld a, [hl]
 	cp $ff ; is it the end of the table?
 	jr nz, .notAtEndOfInventory
@@ -78,11 +73,7 @@ AddItemToInventory_::
 ; if so, store 99 in the current slot and store the rest in a new slot
 	ld a, 99
 	ld [hli], a
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; AddItemToInventory_.increaseItemQuantity
-	; "Having a stack of 99 items and adding more can cause memory corruption" FIX part 2
-	jp .checkIfEndOfInventory
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX part 2
+	jp .notAtEndOfInventory
 .increaseItemQuantityFailed
 	pop hl
 	and a

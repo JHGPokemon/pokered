@@ -27,12 +27,7 @@ HiddenItemNear:
 	ld a, [wYCoord]
 	call Sub5ClampTo0
 	cp d
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; HiddenItemNear
-	; "The Item Finder won't detect items at X or Y coordinate 0" FIX
-	jr z, .y_zflag
 	jr nc, .loop
-.y_zflag
 	ld a, [wYCoord]
 	add 4
 	cp d
@@ -40,10 +35,7 @@ HiddenItemNear:
 	ld a, [wXCoord]
 	call Sub5ClampTo0
 	cp e
-	jr z, .x_zflag
 	jr nc, .loop
-.x_zflag
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
 	ld a, [wXCoord]
 	add 5
 	cp e

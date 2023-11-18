@@ -20,12 +20,6 @@ EvolutionAfterBattle:
 	push hl
 	push bc
 	push de
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; EvolutionAfterBattle
-	; "Random items can cause Pokémon to evolve" FIX part 1
-	ld hl, wStartBattleLevels
-	push hl
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX part 1
 	ld hl, wPartyCount
 	push hl
 
@@ -33,20 +27,11 @@ Evolution_PartyMonLoop: ; loop over party mons
 	ld hl, wWhichPokemon
 	inc [hl]
 	pop hl
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; Evolution_PartyMonLoop
-	; "Random items can cause Pokémon to evolve" FIX part 2
-	pop de
-	ld a, [de]
-	ld [wTempCoins1], a
-	inc de
 	inc hl
 	ld a, [hl]
 	cp $ff ; have we reached the end of the party?
 	jp z, .done
 	ld [wEvoOldSpecies], a
-	push de
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX part 2
 	push hl
 	ld a, [wWhichPokemon]
 	ld c, a

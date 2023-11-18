@@ -63,15 +63,11 @@ BikeShopClerkText:
 	call PlaceString
 	ld hl, BikeShopClerkDoYouLikeItText
 	call PrintText
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; BikeShopClerkText.dontHaveVoucher
-	; "Bicycle clerk causes text to appear instantly" FIX
-	ld hl, wd730
-	res 6, [hl]
 	call HandleMenuInput
 	bit BIT_B_BUTTON, a
 	jr nz, .cancel
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	ld hl, wd730
+	res 6, [hl]
 	ld a, [wCurrentMenuItem]
 	and a
 	jr nz, .cancel

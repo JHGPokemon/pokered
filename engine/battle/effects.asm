@@ -233,14 +233,14 @@ FreezeBurnParalyzeEffect:
 	ld [wEnemyMonStatus], a
 	call QuarterSpeedDueToParalysis ; quarter speed of affected mon
 	ld a, ENEMY_HUD_SHAKE_ANIM
-	call PlayBattleAnimation
+	call PlayAlternativeAnimation
 	jp PrintMayNotAttackText ; print paralysis text
 .burn1
 	ld a, 1 << BRN
 	ld [wEnemyMonStatus], a
 	call HalveAttackDueToBurn ; halve attack of affected mon
 	ld a, ENEMY_HUD_SHAKE_ANIM
-	call PlayBattleAnimation
+	call PlayAlternativeAnimation
 	ld hl, BurnedText
 	jp PrintText
 .freeze1
@@ -248,7 +248,7 @@ FreezeBurnParalyzeEffect:
 	ld a, 1 << FRZ
 	ld [wEnemyMonStatus], a
 	ld a, ENEMY_HUD_SHAKE_ANIM
-	call PlayBattleAnimation
+	call PlayAlternativeAnimation
 	ld hl, FrozenText
 	jp PrintText
 .opponentAttacker
@@ -470,6 +470,10 @@ UpdateStatDone:
 	ld de, wEnemyMoveNum
 	ld bc, wEnemyMonMinimized
 .playerTurn
+; check if we used an X-stat up item
+       ld a, [wAltAnimationID]
+       and a
+       jr nz, .notMinimize
 	ld a, [de]
 	cp MINIMIZE
 	jr nz, .notMinimize
@@ -1015,6 +1019,13 @@ ChargeEffect:
 	jr nz, .notFly
 	set INVULNERABLE, [hl] ; mon is now invulnerable to typical attacks (fly/dig)
 	ld b, TELEPORT ; load Teleport's animation
+;;; teleport is the only battle move animation so we handle it separately
+	xor a
+	ld [wAnimationType], a
+	ld a, b
+	call PlayBattleAnimation
+	jr .doneWithAnimations
+;;;
 .notFly
 	ld a, [de]
 	cp DIG
@@ -1025,7 +1036,8 @@ ChargeEffect:
 	xor a
 	ld [wAnimationType], a
 	ld a, b
-	call PlayBattleAnimation
+	call PlayAlternativeAnimation
+.doneWithAnimations
 	ld a, [de]
 	ld [wChargeMoveNum], a
 	ld hl, ChargeMoveEffectText
@@ -1462,6 +1474,10 @@ PlayCurrentMoveAnimation2:
 PlayBattleAnimation2:
 ; play animation ID at a and animation type 6 or 3
 	ld [wAnimationID], a
+; zero out the alternative animation
+	xor a 
+	ld [wAltAnimationID], a
+GotAnimationID:
 	ldh a, [hWhoseTurn]
 	and a
 	ld a, $6
@@ -1470,6 +1486,10 @@ PlayBattleAnimation2:
 .storeAnimationType
 	ld [wAnimationType], a
 	jp PlayBattleAnimationGotID
+
+PlayAlternativeAnimation2:
+	ld [wAltAnimationID], a
+	jr GotAnimationID
 
 PlayCurrentMoveAnimation:
 ; animation at MOVENUM will be played unless MOVENUM is 0
@@ -1484,10 +1504,18 @@ PlayCurrentMoveAnimation:
 .notEnemyTurn
 	and a
 	ret z
+;;; check for which type of animation to play
+       ld a, [wAltAnimationID]
+       and a
+       jr nz, PlayAlternativeAnimation
+;;; fallthrough
 
 PlayBattleAnimation:
 ; play animation ID at a and predefined animation type
 	ld [wAnimationID], a
+;;; zero out the alternative animation
+	xor a 
+	ld [wAltAnimationID], a
 
 PlayBattleAnimationGotID:
 ; play animation at wAnimationID
@@ -1499,3 +1527,7 @@ PlayBattleAnimationGotID:
 	pop de
 	pop hl
 	ret
+
+PlayAlternativeAnimation:
+	ld [wAltAnimationID], a
+	jr PlayBattleAnimationGotID

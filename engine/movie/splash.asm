@@ -124,11 +124,7 @@ AnimateShootingStar:
 	ld a, [wMoveDownSmallStarsOAMCount]
 	cp 24
 	jr z, .next2
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; AnimateShootingStar.smallStarsInnerLoop
-	; "The splash screen adds 2 more stars than it should" FIX
-	add 4 
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	add 6 ; should be 4, but the extra 2 aren't visible on screen
 	ld [wMoveDownSmallStarsOAMCount], a
 .next2
 	call MoveDownSmallStars

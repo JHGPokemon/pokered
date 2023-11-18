@@ -77,10 +77,7 @@ HiddenCoins:
 	cp 20
 	jr z, .bcd20
 	cp 40
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; HiddenCoins
-	; "The hidden 40-coin stash in the Game Corner only gives half" FIX
-	jr z, .bcd40 
+	jr z, .bcd20 ; should be bcd40
 	jr .bcd100
 .bcd10
 	ld a, $10
@@ -90,8 +87,7 @@ HiddenCoins:
 	ld a, $20
 	ldh [hCoins + 1], a
 	jr .bcdDone
-.bcd40 
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+.bcd40 ; due to a typo, this is never used
 	ld a, $40
 	ldh [hCoins + 1], a
 	jr .bcdDone

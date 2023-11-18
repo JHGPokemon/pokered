@@ -1,11 +1,7 @@
 AnimateHealingMachine:
 	ld de, PokeCenterFlashingMonitorAndHealBall
 	ld hl, vChars0 tile $7c
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; AnimateHealingMachine
-	; "The PC screen in the healing machine doesn't flash correctly" FIX
-	lb bc, BANK(PokeCenterFlashingMonitorAndHealBall), 2 
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	lb bc, BANK(PokeCenterFlashingMonitorAndHealBall), 3 ; should be 2
 	call CopyVideoData
 	ld hl, wUpdateSpritesEnabled
 	ld a, [hl]

@@ -105,7 +105,7 @@ TypeEffects:
 	db BUG,          STEEL,        NOT_VERY_EFFECTIVE
 	db GHOST,        STEEL,        NOT_VERY_EFFECTIVE
 	db GRASS,        STEEL,        NOT_VERY_EFFECTIVE
-	db PSYCHIC,      STEEL,        NOT_VERY_EFFECTIVE
+	db PSYCHIC_TYPE, STEEL,        NOT_VERY_EFFECTIVE
 	db ICE,          STEEL,        NOT_VERY_EFFECTIVE
 	db DRAGON,       STEEL,        NOT_VERY_EFFECTIVE
 	db DARK,         STEEL,        NOT_VERY_EFFECTIVE

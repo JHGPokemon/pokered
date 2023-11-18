@@ -773,14 +773,6 @@ FaintEnemyPokemon:
 	hlcoord 0, 0
 	lb bc, 4, 11
 	call ClearScreenArea
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; FaintEnemyPokemon.wild
-	; "The battle victory music can sometimes play at the wrong time" FIX part 1
-	call AnyPartyAlive
-	ld a, d
-	and a
-	push af
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX part 1
 	ld a, [wIsInBattle]
 	dec a
 	jr z, .wild_win
@@ -799,14 +791,11 @@ FaintEnemyPokemon:
 	jr .sfxplayed
 .wild_win
 	call EndLowHealthAlarm
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; FaintEnemyPokemon.wild_win
-	; "The battle victory music can sometimes play at the wrong time" FIX part 2
-	pop af
-	push af
 	ld a, MUSIC_DEFEATED_WILD_MON
-	call nz, PlayBattleVictoryMusic
+	call PlayBattleVictoryMusic
 .sfxplayed
+; bug: win sfx is played for wild battles before checking for player mon HP
+; this can lead to odd scenarios where both player and enemy faint, as the win sfx plays yet the player never won the battle
 	ld hl, wBattleMonHP
 	ld a, [hli]
 	or [hl]
@@ -816,8 +805,9 @@ FaintEnemyPokemon:
 	jr nz, .playermonnotfaint ; if so, don't call RemoveFaintedPlayerMon twice
 	call RemoveFaintedPlayerMon
 .playermonnotfaint
-	pop af
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX part 2
+	call AnyPartyAlive
+	ld a, d
+	and a
 	ret z
 	ld hl, EnemyMonFaintedText
 	call PrintText

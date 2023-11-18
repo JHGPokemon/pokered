@@ -547,11 +547,7 @@ Subanim_0Circle_1Square_TossBack:
 	db FRAMEBLOCK_47, BASECOORD_B0, FRAMEBLOCKMODE_00
 
 Subanim_0CirclesCentering:
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; Subanim_0CirclesCentering
-	; "Double Edge looks weird when the opponent uses it" FIX
-	subanim SUBANIMTYPE_HVFLIP, 6
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	subanim SUBANIMTYPE_COORDFLIP, 6 ; should be SUBANIMTYPE_HVFLIP
 	db FRAMEBLOCK_44, BASECOORD_64, FRAMEBLOCKMODE_00
 	db FRAMEBLOCK_45, BASECOORD_65, FRAMEBLOCKMODE_00
 	db FRAMEBLOCK_46, BASECOORD_66, FRAMEBLOCKMODE_00

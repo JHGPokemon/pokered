@@ -2761,13 +2761,6 @@ NoMovesLeftText:
 	text_end
 
 SwapMovesInMenu:
-	;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; SwapMovesInMenu
-	; "Move swaps disallowed while transformed" FIX 
-	ld a, [wPlayerBattleStatus3]
-	bit TRANSFORMED, a
-	jp nz, MoveSelectionMenu ; No move swapping while transformed
-	;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
 	ld a, [wMenuItemToSwap]
 	and a
 	jr z, .noMenuItemSelected

@@ -39,9 +39,9 @@ SubstituteEffect_:
 	jr c, .notEnoughHP ; underflow means user would be left with negative health
 	;;;;;;;;;;;;;;;;;;;;
 	; SubstituteEffect_.notEnemy
-	; "Substitute may leave the user with 0 HP after it's used" FIX 
+	; "Substitute may leave the user with 0 HP after it's used" IN THE ARCHIVED BUGS-AND-GLITCHES SECTION
 	jr z, .notEnoughHP 
-	;;;;;;;;;;;;;;;;;;;; END OF FIX
+	;;;;;;;;;;;;;;;;;;;;
 .userHasZeroOrMoreHP
 	ldi [hl], a ; save resulting HP after subtraction into current HP
 	ld [hl], d

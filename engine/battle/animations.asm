@@ -1899,11 +1899,6 @@ AnimationWavyScreen:
 	ld c, $ff
 	ld hl, WavyScreenLineOffsets
 .loop
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; AnimationWavyScreen.loop
-	; "Psychic/Psywave/Night Shade's animation doesn't wiggle the top 3 screen lines" FIX
-	ld a, [hl]
-	ldh [hSCX], a
 	push hl
 .innerLoop
 	call WavyScreen_SetSCX
@@ -1920,8 +1915,6 @@ AnimationWavyScreen:
 	dec c
 	jr nz, .loop
 	xor a
-	ldh [hSCX], a
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
 	ldh [hWY], a
 	call SaveScreenTilesToBuffer2
 	call ClearScreen

@@ -2742,11 +2742,7 @@ AnyMoveToSelect:
 	or c
 	jr .handleDisabledMovePPLoop
 .allMovesChecked
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; AnyMoveToSelect.allMovesChecked
-	; "Struggle may not function correctly if any move has at least one PP Up" FIX
-	and $3f ; any PP left?
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	and a ; any PP left?
 	ret nz ; return if a move has PP left
 .noMovesLeft
 	ld hl, NoMovesLeftText
@@ -3458,12 +3454,8 @@ CheckPlayerStatusConditions:
 .MonHurtItselfOrFullyParalysed
 	ld hl, wPlayerBattleStatus1
 	ld a, [hl]
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; CheckPlayerStatusConditions.MonHurtItselfOrFullyParalysed
-	; "Fly and Dig do not remove the invulnerable status when prevented from reaching their second stage by paralysis or confusion damage" FIX
-	; clear bide, thrashing, charging up, trapping moves such as wrap (already cleared for confusion damage), and invulnerable moves
-	and ~((1 << STORING_ENERGY) | (1 << THRASHING_ABOUT) | (1 << CHARGING_UP) | (1 << USING_TRAPPING_MOVE) | (1 << INVULNERABLE))
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	; clear bide, thrashing, charging up, and trapping moves such as warp (already cleared for confusion damage)
+	and ~((1 << STORING_ENERGY) | (1 << THRASHING_ABOUT) | (1 << CHARGING_UP) | (1 << USING_TRAPPING_MOVE))
 	ld [hl], a
 	ld a, [wPlayerMoveEffect]
 	cp FLY_EFFECT
@@ -4640,7 +4632,7 @@ CriticalHitTest:
 	bit GETTING_PUMPED, a        ; test for focus energy
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	; CriticalHitTest.calcCriticalHitProbability
-	; "Focus Energy quarters the critical hit chance instead of quadrupling it when used" FIX 
+	; "Focus Energy quarters the critical hit chance instead of quadrupling it when used" FIX FROM THE ARCHIVED BUGS-AND-GLITCHES SECTION
 	jr z, .noFocusEnergyUsed
 	sla b                        ; (effective (base speed/2)*2)
 	jr nc, .focusEnergyUsed
@@ -4649,7 +4641,7 @@ CriticalHitTest:
 .noFocusEnergyUsed
 	srl b
 .focusEnergyUsed
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	ld hl, HighCriticalMoves     ; table of high critical hit moves
 .Loop
 	ld a, [hli]                  ; read move from move table
@@ -4670,7 +4662,7 @@ CriticalHitTest:
 .SkipHighCritical
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	; CriticalHitTest.SkipHighCritical 
-	; "Moves that have a 100% chance to critical hit will not crit in 1/256 uses" FIX 
+	; "Moves that have a 100% chance to critical hit will not crit in 1/256 uses" FIX FROM THE ARCHIVED BUGS-AND-GLITCHES SECTION
 	ld a, b
 	inc a ; optimization of "cp $ff"
 	jr z, .guaranteedCriticalHit
@@ -4681,7 +4673,7 @@ CriticalHitTest:
 	cp b                         ; check a against calculated crit rate
 	ret nc                       ; no critical hit if no borrow
 .guaranteedCriticalHit
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	ld a, $1
 	ld [wCriticalHitOrOHKO], a   ; set critical hit flag
 	ret
@@ -5296,7 +5288,7 @@ AdjustDamageForMoveType:
 	ldh [hMultiplier], a
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	; AdjustDamageForMoveType.matchingPairFound
-	; "Dual-type move effectiveness may be misreported" FIX 
+	; "Dual-type move effectiveness may be misreported" FIX FROM THE ARCHIVED BUGS-AND-GLITCHES SECTION
 	and a  ; cp NO_EFFECT
 	jr z, .gotMultiplier
 	cp NOT_VERY_EFFECTIVE
@@ -5312,7 +5304,7 @@ AdjustDamageForMoveType:
 	and $7f
 	sla a
 .gotMultiplier
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	add b
 	ld [wDamageMultipliers], a
 	xor a
@@ -5417,9 +5409,9 @@ MoveHitTest:
 	jr z, .checkForDigOrFlyStatus
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	; MoveHitTest.swiftCheck
-	; "HP draining moves and Dream Eater may hit when they shouldn't" FIX 
+	; "HP draining moves and Dream Eater may hit when they shouldn't" FIX FROM THE ARCHIVED BUGS-AND-GLITCHES SECTION
 	ld a, [de]
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 	cp DRAIN_HP_EFFECT
 	jp z, .moveMissed
 	cp DREAM_EATER_EFFECT
@@ -5492,12 +5484,12 @@ MoveHitTest:
 
 	; The following snippet is taken from Pokemon Crystal, it fixes the above bug. ;;;;;;;;;;
 	; MoveHitTest.doAccuracyCheck
-	; "Moves that have 100% accuracy will miss in 1/256 uses" FIX 
+	; "Moves that have 100% accuracy will miss in 1/256 uses" FIX FROM THE ARCHIVED BUGS-AND-GLITCHES SECTION
 	ld a, b
 	cp $FF ; Is the value $FF?
 	ret z ; If so, we need not calculate, just so we can fix this bug.
 	;;;;;;;;;;;;;;;;;;;;;;;;;;
-	;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	;;;;;;;;;;;;;;;;;;;;;;;;;;
 	call BattleRandom
 	cp b
 	jr nc, .moveMissed

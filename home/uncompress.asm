@@ -34,24 +34,14 @@ _UncompressSpriteData::
 	ld [wSpriteLoadFlags], a
 	call ReadNextInputByte    ; first byte of input determines sprite width (high nybble) and height (low nybble) in tiles (8x8 pixels)
 	ld b, a
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; _UncompressSpriteData:
-	; "Glitch Pokémon can corrupt SRAM" FIX
-	and $7
-	jr nz, .skip1
-	inc a
-.skip1
+	and $f
 	add a
 	add a
 	add a
 	ld [wSpriteHeight], a
 	ld a, b
 	swap a
-	and $7
-	jr nz, .skip2
-	inc a
-.skip2
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	and $f
 	add a
 	add a
 	add a

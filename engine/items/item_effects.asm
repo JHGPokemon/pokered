@@ -1611,11 +1611,6 @@ ItemUsePokedoll:
 	dec a
 	jp nz, ItemUseNotTime
 	ld a, $01
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; ItemUsePokedoll
-	; "Using the Pokédoll on the ghost Marowak can allow you to sequence break" FIX
-	ld [wBattleResult], a
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
 	ld [wEscapedFromBattle], a
 	jp PrintItemUseTextAndRemoveItem
 

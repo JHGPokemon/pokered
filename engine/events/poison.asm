@@ -8,11 +8,7 @@ ApplyOutOfBattlePoisonDamage:
 	call IncrementDayCareMonExp
 	ld a, [wStepCounter]
 	and $3 ; is the counter a multiple of 4?
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; ApplyOutOfBattlePoisonDamage
-	; "Fainted parties can be walked around with through resets if poisoned" FIX
-	jp nz, .skipPoisonEffectAndSound ; only apply poison damage every fourth step
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	jp nz, .noBlackOut ; only apply poison damage every fourth step
 	ld [wWhichPokemon], a
 	ld hl, wPartyMon1Status
 	ld de, wPartySpecies

@@ -136,12 +136,8 @@ _OaksLabGivePokeballsExplanationText::
 	cont "it's fair game."
 
 	para "Just throw a #"
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; _OaksLabGivePokeballsExplainationText:
-	; "The text used by Prof. Oak when he gives you 5 Pokéballs overwrites the second line with the last line" FIX
-	line "BALL at it and"
-	cont "try to catch it!"
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	line "BALL at it and try"
+	line "to catch it!"
 
 	para "This won't always"
 	line "work, though."

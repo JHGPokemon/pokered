@@ -1,13 +1,7 @@
 _Route8SuperNerd1BattleText::
 	text "You look good at"
 	line "#MON, but"
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; _Route8SuperNerd1BattleText
-	; "The text used by one of the Route 8 battles has text cut off" FIX
-	cont "how's your"
-
-	para "chemistry grade?"
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	cont "how's your chem?"
 	done
 
 _Route8SuperNerd1EndBattleText::

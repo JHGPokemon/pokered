@@ -142,11 +142,8 @@ _AfterTrade2Text::
 	text_ram wInGameTradeGiveMonName
 	text " you"
 	line "traded to me"
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; _AfterTrade2Text
-	; "An in-game trade NPC talks about an 'evolving Raichu'" FIX
-	para "has grown strong!"
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+
+	para "went and evolved!"
 	done
 
 _WannaTrade3Text::

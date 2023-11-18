@@ -28,11 +28,7 @@ Route8GateDefaultScript:
 	ld hl, .PlayerInCoordsArray
 	call ArePlayerCoordsInArray
 	ret nc
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; Route8GateDefaultScript
-	; "The player doesn't face the guard in the Route 8 gate when stopped by him" FIX
-	ld a, PLAYER_DIR_UP
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
+	ld a, PLAYER_DIR_LEFT
 	ld [wPlayerMovingDirection], a
 	xor a
 	ldh [hJoyHeld], a

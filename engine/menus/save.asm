@@ -156,9 +156,7 @@ SaveSAV:
 	and a
 	ret nz
 .save
-	;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; SaveSav.save
-	; "Saves corrupted by mid-save shutoff are not handled" FIX part 1
+	call SaveSAVtoSRAM
 	hlcoord 1, 13
 	lb bc, 4, 18
 	call ClearScreenArea
@@ -167,8 +165,6 @@ SaveSAV:
 	call PlaceString
 	ld c, 120
 	call DelayFrames
-	call SaveSAVtoSRAM
-	;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX part 1
 	ld hl, GameSavedText
 	call PrintText
 	ld a, SFX_SAVE
@@ -220,14 +216,6 @@ SaveSAVtoSRAM0:
 	ld de, sSpriteData
 	ld bc, wSpriteDataEnd - wSpriteDataStart
 	call CopyData
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; SaveSAVtoSRAM0
-	; "Saves corrupted by mid-save shutoff are not handled" FIX part 2
-	ld hl, wPartyDataStart
-	ld de, sPartyData
-	ld bc, wPartyDataEnd - wPartyDataStart
-	call CopyData
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX part 2
 	ld hl, wBoxDataStart
 	ld de, sCurBoxData
 	ld bc, wBoxDataEnd - wBoxDataStart
@@ -289,11 +277,9 @@ SaveSAVtoSRAM2:
 SaveSAVtoSRAM::
 	ld a, $2
 	ld [wSaveFileStatus], a
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; SaveSAVtoSRAM
-	; "Saves corrupted by mid-save shutoff are not handled" FIX part 3
-	jp SaveSAVtoSRAM0
-	;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX part 3
+	call SaveSAVtoSRAM0
+	call SaveSAVtoSRAM1
+	jp SaveSAVtoSRAM2
 
 SAVCheckSum:
 ;Check Sum (result[1 byte] is complemented)

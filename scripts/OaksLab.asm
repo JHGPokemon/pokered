@@ -119,6 +119,11 @@ OaksLabFollowedOakScript:
 	call UpdateSprites
 	ld hl, wFlags_D733
 	res 1, [hl]
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	; OaksLabFollowedOakScript
+	; "Prof. Oak's lab music can sometimes play with a channel cut off" FIX
+	call DelayFrame
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
 	call PlayDefaultMusic
 
 	ld a, SCRIPT_OAKSLAB_OAK_CHOOSE_MON_SPEECH

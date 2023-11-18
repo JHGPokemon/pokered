@@ -137,7 +137,7 @@ _OaksLabGivePokeballsExplanationText::
 
 	para "Just throw a #"
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	; _OaksLabGivePokeballsExplainationText:
+	; _OaksLabGivePokeballsExplanationText:
 	; "The text used by Prof. Oak when he gives you 5 Pokéballs overwrites the second line with the last line" FIX
 	line "BALL at it and"
 	cont "try to catch it!"

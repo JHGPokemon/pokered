@@ -1427,7 +1427,7 @@ EnemySendOutFirstMon:
 	jr z, .next4
 	ld a, [wOptions]
 	bit BIT_BATTLE_SHIFT, a
-	jr nz, .next4
+	jr .next4 ; Always skip switch request
 	ld hl, TrainerAboutToUseText
 	call PrintText
 	hlcoord 0, 7

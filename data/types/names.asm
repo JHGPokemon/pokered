@@ -26,7 +26,8 @@ ENDR
     dw .Dark
 	dw .Fairy
 	dw .Flyingdragon
-	dw .BugPoison
+	dw .Bugpoison
+	dw .Poisonground
 
 	assert_table_length NUM_TYPES
 
@@ -50,4 +51,5 @@ ENDR
 .Steel:    		db "STEEL@"
 .Fairy:    	   	db "FAIRY@"
 .Flyingdragon: 	db "FLYINGDRAGON@"
-.BugPoison:     db "BUGPOISON@"
+.Bugpoison:     db "BUGPOISON@"
+.Poisonground:  db "POISONGROUND@"

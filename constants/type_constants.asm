@@ -29,5 +29,6 @@ DEF SPECIAL EQU const_value
 	const FAIRY        ; $1C
 	const FLYINGDRAGON ; $1D ; Meant for Charizard so he is a Fire / FlyingDragon type
 	const BUGPOISON    ; $1E ; Meant for Beedrill and Venomoth as a first type. Beedrill: BugPoison / Flying , Venomoth: BugPoison / Psychicflying
+	const POISONGROUND ; $1F ; Meant for Nidoking and Nidoqueen as a first type. They both will be part Dragon.
 
 DEF NUM_TYPES EQU const_value

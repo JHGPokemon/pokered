@@ -28,6 +28,7 @@ ENDR
 	dw .Flyingdragon
 	dw .Bugpoison
 	dw .Poisonground
+	dw .Flyingpsychic
 
 	assert_table_length NUM_TYPES
 
@@ -53,3 +54,4 @@ ENDR
 .Flyingdragon: 	db "FLYINGDRAGON@"
 .Bugpoison:     db "BUGPOISON@"
 .Poisonground:  db "POISONGROUND@"
+.Flyingpsychic: db "FLYINGPSYCHIC@"

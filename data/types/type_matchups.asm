@@ -124,15 +124,15 @@ TypeEffects:
 	db DARK,          FAIRY,         NOT_VERY_EFFECTIVE
 	db DRAGON,        FAIRY,         NO_EFFECT
 	; Don't know if FlyingDragon will be added to moves but better have the attacking matchups here too.
-	db FLYINGDRAGON,  FLYINGDRAGON,  SUPER_EFFECTIVE
-	db FLYINGDRAGON,  FIGHTING,      SUPER_EFFECTIVE
-	db FLYINGDRAGON,  BUG,           SUPER_EFFECTIVE
-	db FLYINGDRAGON,  GRASS,         SUPER_EFFECTIVE
-	db FLYINGDRAGON,  DRAGON,        SUPER_EFFECTIVE
-	db FLYINGDRAGON,  ROCK,          NOT_VERY_EFFECTIVE
-	db FLYINGDRAGON,  ELECTRIC,      NOT_VERY_EFFECTIVE
-	db FLYINGDRAGON,  STEEL,         NOT_VERY_EFFECTIVE ; Technically this resists it twice but I decided to make it just not very effective if it is the attacking type 
-	db FLYINGDRAGON,  FAIRY,         NO_EFFECT
+;	db FLYINGDRAGON,  FLYINGDRAGON,  SUPER_EFFECTIVE
+;	db FLYINGDRAGON,  FIGHTING,      SUPER_EFFECTIVE
+;	db FLYINGDRAGON,  BUG,           SUPER_EFFECTIVE
+;	db FLYINGDRAGON,  GRASS,         SUPER_EFFECTIVE
+;	db FLYINGDRAGON,  DRAGON,        SUPER_EFFECTIVE
+;	db FLYINGDRAGON,  ROCK,          NOT_VERY_EFFECTIVE
+;	db FLYINGDRAGON,  ELECTRIC,      NOT_VERY_EFFECTIVE
+;	db FLYINGDRAGON,  STEEL,         NOT_VERY_EFFECTIVE ; Technically this resists it twice but I decided to make it just not very effective if it is the attacking type 
+;	db FLYINGDRAGON,  FAIRY,         NO_EFFECT
 	db ROCK,          FLYINGDRAGON,  SUPER_EFFECTIVE
 	db ICE,           FLYINGDRAGON,  MEGA_EFFECTIVE
 	db DRAGON,        FLYINGDRAGON,  SUPER_EFFECTIVE
@@ -144,18 +144,18 @@ TypeEffects:
 	db WATER,         FLYINGDRAGON,  NOT_VERY_EFFECTIVE
 	db GROUND,        FLYINGDRAGON,  NO_EFFECT
 	; Don't know if BugPoison will be added to moves but better have the attacking matchups here too.
-	db BUGPOISON,     BUGPOISON,     NOT_VERY_EFFECTIVE ; Technically this resists it twice but I decided to make it just not very effective if it is the attacking type 
-	db BUGPOISON,     GRASS,         MEGA_EFFECTIVE
-	db BUGPOISON,     PSYCHIC_TYPE,  SUPER_EFFECTIVE
-	db BUGPOISON,     DARK,          SUPER_EFFECTIVE
-	db BUGPOISON,     FIGHTING,      NOT_VERY_EFFECTIVE
-	db BUGPOISON,     FLYING,        NOT_VERY_EFFECTIVE
-	db BUGPOISON,     POISON,        NOT_VERY_EFFECTIVE ; Technically this resists it twice but I decided to make it just not very effective if it is the attacking type 
-	db BUGPOISON,     GHOST,         NOT_VERY_EFFECTIVE ; Technically this resists it twice but I decided to make it just not very effective if it is the attacking type 
-	db BUGPOISON,     STEEL,         NO_EFFECT 
-	db BUGPOISON,     FIRE,          NOT_VERY_EFFECTIVE
-	db BUGPOISON,     GROUND,        NOT_VERY_EFFECTIVE
-	db BUGPOISON,     ROCK,          NOT_VERY_EFFECTIVE
+;	db BUGPOISON,     BUGPOISON,     NOT_VERY_EFFECTIVE ; Technically this resists it twice but I decided to make it just not very effective if it is the attacking type 
+;	db BUGPOISON,     GRASS,         MEGA_EFFECTIVE
+;	db BUGPOISON,     PSYCHIC_TYPE,  SUPER_EFFECTIVE
+;	db BUGPOISON,     DARK,          SUPER_EFFECTIVE
+;	db BUGPOISON,     FIGHTING,      NOT_VERY_EFFECTIVE
+;	db BUGPOISON,     FLYING,        NOT_VERY_EFFECTIVE
+;	db BUGPOISON,     POISON,        NOT_VERY_EFFECTIVE ; Technically this resists it twice but I decided to make it just not very effective if it is the attacking type 
+;	db BUGPOISON,     GHOST,         NOT_VERY_EFFECTIVE ; Technically this resists it twice but I decided to make it just not very effective if it is the attacking type 
+;	db BUGPOISON,     STEEL,         NO_EFFECT 
+;	db BUGPOISON,     FIRE,          NOT_VERY_EFFECTIVE
+;	db BUGPOISON,     GROUND,        NOT_VERY_EFFECTIVE
+;	db BUGPOISON,     ROCK,          NOT_VERY_EFFECTIVE
 	db FLYING,        BUGPOISON,     SUPER_EFFECTIVE
 	db ROCK,          BUGPOISON,     SUPER_EFFECTIVE
 	db FIRE,          BUGPOISON,     SUPER_EFFECTIVE
@@ -166,17 +166,17 @@ TypeEffects:
 	db BUG,           BUGPOISON,     NOT_VERY_EFFECTIVE
 	db FAIRY,         BUGPOISON,     NOT_VERY_EFFECTIVE
 	; Don't know if PoisonGround will be added to moves but better have the attacking matchups here too. 
-	db POISONGROUND,  FLYINGDRAGON,  NO_EFFECT
-	db POISONGROUND,  BUGPOISON,     NOT_VERY_EFFECTIVE
-	db POISONGROUND,  FAIRY,         SUPER_EFFECTIVE
-	db POISONGROUND,  STEEL,         NO_EFFECT
-	db POISONGROUND,  FIRE,          SUPER_EFFECTIVE
-	db POISONGROUND,  ELECTRIC,      SUPER_EFFECTIVE
-	db POISONGROUND,  POISON,        NOT_VERY_EFFECTIVE
-	db POISONGROUND,  GROUND,        NOT_VERY_EFFECTIVE
-	db POISONGROUND,  GHOST,         NOT_VERY_EFFECTIVE
-	db POISONGROUND,  BUG,           NOT_VERY_EFFECTIVE
-	db POISONGROUND,  FLYING,        NO_EFFECT
+;	db POISONGROUND,  FLYINGDRAGON,  NO_EFFECT
+;	db POISONGROUND,  BUGPOISON,     NOT_VERY_EFFECTIVE
+;	db POISONGROUND,  FAIRY,         SUPER_EFFECTIVE
+;	db POISONGROUND,  STEEL,         NO_EFFECT
+;	db POISONGROUND,  FIRE,          SUPER_EFFECTIVE
+;	db POISONGROUND,  ELECTRIC,      SUPER_EFFECTIVE
+;	db POISONGROUND,  POISON,        NOT_VERY_EFFECTIVE
+;	db POISONGROUND,  GROUND,        NOT_VERY_EFFECTIVE
+;	db POISONGROUND,  GHOST,         NOT_VERY_EFFECTIVE
+;	db POISONGROUND,  BUG,           NOT_VERY_EFFECTIVE
+;	db POISONGROUND,  FLYING,        NO_EFFECT
 	db GROUND,        POISONGROUND,  SUPER_EFFECTIVE
 	db PSYCHIC_TYPE,  POISONGROUND,  SUPER_EFFECTIVE
 	db WATER,         POISONGROUND,  SUPER_EFFECTIVE
@@ -188,18 +188,18 @@ TypeEffects:
 	db ROCK,          POISONGROUND,  NOT_VERY_EFFECTIVE
 	db ELECTRIC,      POISONGROUND,  NO_EFFECT
 ; Don't know if FlyingPsychic will be added to moves but better have the attacking matchups here too. 
-	db FLYINGPSYCHIC, FLYINGPSYCHIC, NOT_VERY_EFFECTIVE
-	db FLYINGPSYCHIC, BUGPOISON,     MEGA_EFFECTIVE
-	db FLYINGPSYCHIC, POISONGROUND,  SUPER_EFFECTIVE
-	db FLYINGPSYCHIC, FIGHTING,      MEGA_EFFECTIVE
-	db FLYINGPSYCHIC, BUG,           SUPER_EFFECTIVE
-	db FLYINGPSYCHIC, GRASS,         SUPER_EFFECTIVE
-	db FLYINGPSYCHIC, POISON,        SUPER_EFFECTIVE
-	db FLYINGPSYCHIC, ROCK,          NOT_VERY_EFFECTIVE
-	db FLYINGPSYCHIC, ELECTRIC,      NOT_VERY_EFFECTIVE
-	db FLYINGPSYCHIC, STEEL,         NOT_VERY_EFFECTIVE ; Technically this resists it twice but I decided to make it just not very effective if it is the attacking type 
-	db FLYINGPSYCHIC, PSYCHIC_TYPE,  NOT_VERY_EFFECTIVE
-	db FLYINGPSYCHIC, DARK,          NO_EFFECT
+;	db FLYINGPSYCHIC, FLYINGPSYCHIC, NOT_VERY_EFFECTIVE
+;	db FLYINGPSYCHIC, BUGPOISON,     MEGA_EFFECTIVE
+;	db FLYINGPSYCHIC, POISONGROUND,  SUPER_EFFECTIVE
+;	db FLYINGPSYCHIC, FIGHTING,      MEGA_EFFECTIVE
+;	db FLYINGPSYCHIC, BUG,           SUPER_EFFECTIVE
+;	db FLYINGPSYCHIC, GRASS,         SUPER_EFFECTIVE
+;	db FLYINGPSYCHIC, POISON,        SUPER_EFFECTIVE
+;	db FLYINGPSYCHIC, ROCK,          NOT_VERY_EFFECTIVE
+;	db FLYINGPSYCHIC, ELECTRIC,      NOT_VERY_EFFECTIVE
+;	db FLYINGPSYCHIC, STEEL,         NOT_VERY_EFFECTIVE ; Technically this resists it twice but I decided to make it just not very effective if it is the attacking type 
+;	db FLYINGPSYCHIC, PSYCHIC_TYPE,  NOT_VERY_EFFECTIVE
+;	db FLYINGPSYCHIC, DARK,          NO_EFFECT
 	db ROCK,          FLYINGPSYCHIC, SUPER_EFFECTIVE
 	db GHOST,         FLYINGPSYCHIC, SUPER_EFFECTIVE
 	db ELECTRIC,      FLYINGPSYCHIC, SUPER_EFFECTIVE
@@ -210,15 +210,15 @@ TypeEffects:
 	db PSYCHIC_TYPE,  FLYINGPSYCHIC, NOT_VERY_EFFECTIVE
 	db GROUND,        FLYINGPSYCHIC, NO_EFFECT
 ; Don't know if WaterDragon will be added to moves but better have the attacking matchups here too. 
-	db WATERDRAGON,   WATERDRAGON,   NOT_VERY_EFFECTIVE
-	db WATERDRAGON,   FLYINGDRAGON,  SUPER_EFFECTIVE
-	db WATERDRAGON,   POISONGROUND,  SUPER_EFFECTIVE
-	db WATERDRAGON,   GROUND,        SUPER_EFFECTIVE
-	db WATERDRAGON,   ROCK,          SUPER_EFFECTIVE
-	db WATERDRAGON,   FIRE,          SUPER_EFFECTIVE
-	db WATERDRAGON,   WATER,         NOT_VERY_EFFECTIVE
-	db WATERDRAGON,   GRASS,         NOT_VERY_EFFECTIVE
-    db WATERDRAGON,   FAIRY,         NO_EFFECT
+;	db WATERDRAGON,   WATERDRAGON,   NOT_VERY_EFFECTIVE
+;	db WATERDRAGON,   FLYINGDRAGON,  SUPER_EFFECTIVE
+;	db WATERDRAGON,   POISONGROUND,  SUPER_EFFECTIVE
+;	db WATERDRAGON,   GROUND,        SUPER_EFFECTIVE
+;	db WATERDRAGON,   ROCK,          SUPER_EFFECTIVE
+;	db WATERDRAGON,   FIRE,          SUPER_EFFECTIVE
+;	db WATERDRAGON,   WATER,         NOT_VERY_EFFECTIVE
+;	db WATERDRAGON,   GRASS,         NOT_VERY_EFFECTIVE
+;   db WATERDRAGON,   FAIRY,         NO_EFFECT
 	db FLYINGDRAGON,  WATERDRAGON,   SUPER_EFFECTIVE
 	db DRAGON,        WATERDRAGON,   SUPER_EFFECTIVE
 	db FAIRY,         WATERDRAGON,   SUPER_EFFECTIVE

@@ -1315,6 +1315,11 @@ _ComeBackText::
 	line "Come back!"
 	done
 
+_MegaEffectiveText::
+	text "It's mega"
+	line "effective!"
+	prompt
+
 _SuperEffectiveText::
 	text "It's super"
 	line "effective!"

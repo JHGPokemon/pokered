@@ -109,7 +109,7 @@ TypeEffects:
 	db PSYCHIC_TYPE, STEEL,        NOT_VERY_EFFECTIVE
 	db ICE,          STEEL,        NOT_VERY_EFFECTIVE
 	db DRAGON,       STEEL,        NOT_VERY_EFFECTIVE
-	db DARK,         STEEL,        NOT_VERY_EFFECTIVE
+;	db DARK,         STEEL,        NOT_VERY_EFFECTIVE
 	db POISON,       STEEL,        NO_EFFECT
 	db FAIRY,        FIGHTING,     SUPER_EFFECTIVE
 	db FAIRY,        DRAGON,       SUPER_EFFECTIVE
@@ -123,13 +123,15 @@ TypeEffects:
 	db BUG,          FAIRY,        NOT_VERY_EFFECTIVE
 	db DARK,         FAIRY,        NOT_VERY_EFFECTIVE
 	db DRAGON,       FAIRY,        NO_EFFECT
+	; Don't know if FlyingDragon will be added to moves but better have the attacking matchups here too.
+	db FLYINGDRAGON, FLYINGDRAGON, SUPER_EFFECTIVE
 	db FLYINGDRAGON, FIGHTING,     SUPER_EFFECTIVE
 	db FLYINGDRAGON, BUG,          SUPER_EFFECTIVE
 	db FLYINGDRAGON, GRASS,        SUPER_EFFECTIVE
 	db FLYINGDRAGON, DRAGON,       SUPER_EFFECTIVE
 	db FLYINGDRAGON, ROCK,         NOT_VERY_EFFECTIVE
 	db FLYINGDRAGON, ELECTRIC,     NOT_VERY_EFFECTIVE
-	db FLYINGDRAGON, STEEL,        NOT_VERY_EFFECTIVE ; Could be a "hardly no effect" move situation 
+	db FLYINGDRAGON, STEEL,        NOT_VERY_EFFECTIVE ; Technically this resists it twice but I decided to make it just not very effective if it is the attacking type 
 	db FLYINGDRAGON, FAIRY,        NO_EFFECT
 	db ROCK,         FLYINGDRAGON, SUPER_EFFECTIVE
 	db ICE,          FLYINGDRAGON, MEGA_EFFECTIVE
@@ -137,8 +139,30 @@ TypeEffects:
 	db FAIRY,        FLYINGDRAGON, SUPER_EFFECTIVE
 	db FIGHTING,     FLYINGDRAGON, NOT_VERY_EFFECTIVE
 	db BUG,          FLYINGDRAGON, NOT_VERY_EFFECTIVE
-	db GRASS,        FLYINGDRAGON, NOT_VERY_EFFECTIVE ; Could be a "hardly no effect" move situation
+	db GRASS,        FLYINGDRAGON, NO_EFFECT ; Making the design decision to make this NO EFFECT since it resists it twice, probably is okay as a defending type..
 	db FIRE,         FLYINGDRAGON, NOT_VERY_EFFECTIVE
 	db WATER,        FLYINGDRAGON, NOT_VERY_EFFECTIVE
 	db GROUND,       FLYINGDRAGON, NO_EFFECT
+	; Don't know if BugPoison will be added to moves but better have the attacking matchups here too.
+	db BUGPOISON,    BUGPOISON,    NOT_VERY_EFFECTIVE ; Technically this resists it twice but I decided to make it just not very effective if it is the attacking type 
+	db BUGPOISON,    GRASS,        MEGA_EFFECTIVE
+	db BUGPOISON,    PSYCHIC_TYPE, SUPER_EFFECTIVE
+	db BUGPOISON,    DARK,         SUPER_EFFECTIVE
+	db BUGPOISON,    FIGHTING,     NOT_VERY_EFFECTIVE
+	db BUGPOISON,    FLYING,       NOT_VERY_EFFECTIVE
+	db BUGPOISON,    POISON,       NOT_VERY_EFFECTIVE ; Technically this resists it twice but I decided to make it just not very effective if it is the attacking type 
+	db BUGPOISON,    GHOST,        NOT_VERY_EFFECTIVE ; Technically this resists it twice but I decided to make it just not very effective if it is the attacking type 
+	db BUGPOISON,    STEEL,        NO_EFFECT 
+	db BUGPOISON,    FIRE,         NOT_VERY_EFFECTIVE
+	db BUGPOISON,    GROUND,       NOT_VERY_EFFECTIVE
+	db BUGPOISON,    ROCK,         NOT_VERY_EFFECTIVE
+	db FLYING,       BUGPOISON,    SUPER_EFFECTIVE
+	db ROCK,         BUGPOISON,    SUPER_EFFECTIVE
+	db FIRE,         BUGPOISON,    SUPER_EFFECTIVE
+	db PSYCHIC_TYPE, BUGPOISON,    SUPER_EFFECTIVE
+	db FIGHTING,     BUGPOISON,    NO_EFFECT ; I think fighting being not very effective against bugs is weird but here we are, might change later
+	db GRASS,        BUGPOISON,    NO_EFFECT ; Making the design decision to make this NO EFFECT since it resists it twice, probably is okay as a defending type..
+	db POISON,       BUGPOISON,    NOT_VERY_EFFECTIVE
+	db BUG,          BUGPOISON,    NOT_VERY_EFFECTIVE
+	db FAIRY,        BUGPOISON,    NOT_VERY_EFFECTIVE
 	db -1 ; end

@@ -28,5 +28,6 @@ DEF SPECIAL EQU const_value
 	const DARK         ; $1B
 	const FAIRY        ; $1C
 	const FLYINGDRAGON ; $1D ; Meant for Charizard so he is a Fire / FlyingDragon type
+	const BUGPOISON    ; $1E ; Meant for Beedrill and Venomoth as a first type. Beedrill: BugPoison / Flying , Venomoth: BugPoison / Psychicflying
 
 DEF NUM_TYPES EQU const_value

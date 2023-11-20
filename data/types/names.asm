@@ -56,4 +56,4 @@ ENDR
 .Bugpoison:     db "BUGPOISON@"
 .Poisonground:  db "POISONGROUND@"
 .Flyingpsychic: db "FLYINGPSYCHIC@"
-.Waterdragon:   db "WATERDRAGON"
+.Waterdragon:   db "WATERDRAGON@"

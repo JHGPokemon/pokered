@@ -27,5 +27,6 @@ DEF SPECIAL EQU const_value
 	const DRAGON       ; $1A
 	const DARK         ; $1B
 	const FAIRY        ; $1C
+	const FLYINGDRAGON ; $1D ; Meant for Charizard so he is a Fire / FlyingDragon type
 
 DEF NUM_TYPES EQU const_value

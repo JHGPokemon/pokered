@@ -32,5 +32,9 @@ DEF SPECIAL EQU const_value
 	const POISONGROUND ; $1F ; Meant for Nidoking and Nidoqueen as a first type. They both will be part Dragon.
 	const FLYINGPSYCHIC; $20 ; Meant for Venomoth, as it will have 4 types, as the only pokemon to have that for now. 
 	const WATERDRAGON  ; $21 ; Meant for Gyarados and Lapras
+	const LEVITATE     ; $22 ; Meant for Koffing, Weezing and Mew
+	const ROCKLEVITATE ; $23 ; Meant for Geodude
+	const STEELEVITATE ; $24 ; Meant for Magnemite / Magneton
+	const GHOSTLEVITATE; $25 ; Meant for Gastly and Haunter
 
 DEF NUM_TYPES EQU const_value

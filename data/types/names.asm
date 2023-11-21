@@ -30,6 +30,10 @@ ENDR
 	dw .Poisonground
 	dw .Flyingpsychic
 	dw .Waterdragon
+	dw .Levitate
+	dw .Rocklevitate
+	dw .Steelevitate
+	dw .Ghostlevitate
 
 	assert_table_length NUM_TYPES
 
@@ -57,3 +61,7 @@ ENDR
 .Poisonground:  db "POISONGROUND@"
 .Flyingpsychic: db "FLYINGPSYCHIC@"
 .Waterdragon:   db "WATERDRAGON@"
+.Levitate:      db "LEVITATE@"
+.Rocklevitate:  db "ROCKLEVITATE@"
+.Steelevitate:  db "STEELEVITATE@"
+.Ghostlevitate: db "GHOSTLEVITATE@"

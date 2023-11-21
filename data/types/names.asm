@@ -31,7 +31,7 @@ ENDR
 	dw .Flyingpsychic
 	dw .Waterdragon
 	dw .Levitate
-	dw .Rocklevitate
+;	dw .Rocklevitate
 	dw .Steelevitate
 	dw .Ghostlevitate
 
@@ -62,6 +62,6 @@ ENDR
 .Flyingpsychic: db "FLYINGPSYCHIC@"
 .Waterdragon:   db "WATERDRAGON@"
 .Levitate:      db "LEVITATE@"
-.Rocklevitate:  db "ROCKLEVITATE@"
+;.Rocklevitate:  db "ROCKLEVITATE@"
 .Steelevitate:  db "STEELEVITATE@"
 .Ghostlevitate: db "GHOSTLEVITATE@"

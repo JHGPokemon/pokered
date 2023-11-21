@@ -374,7 +374,7 @@ PrintEndBattleText::
 	ldh [hLoadedROMBank], a
 	ld [MBC1RomBank], a
 	push hl
-	farcall SaveTrainerName
+	call SaveTrainerName
 	ld hl, TrainerEndBattleText
 	call PrintText
 	pop hl
@@ -383,6 +383,17 @@ PrintEndBattleText::
 	ld [MBC1RomBank], a
 	farcall FreezeEnemyTrainerSprite
 	jp WaitForSoundToFinish
+
+SaveTrainerName::
+    ld hl, wTrainerName 
+	ld de, wcd6d
+.CopyCharacter
+	ld a, [hli]
+	ld [de], a
+	inc de
+	cp "@"
+	jr nz, .CopyCharacter
+	ret
 
 GetSavedEndBattleTextPointer::
 	ld a, [wBattleResult]

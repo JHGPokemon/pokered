@@ -1,14 +1,17 @@
 PhysicalToSpecialMoves:
 ; Flying
         db GUST
+        db RAZOR_WIND
 ; Poison
         db ACID
         db SLUDGE
 ; Normal
         db HYPER_BEAM
         db SWIFT
-        db TRI_ATTACK
         db -1 ; end
+
+; Steel
+        db TRI_ATTACK
 
 SpecialToPhysicalMoves:
 ; Fire

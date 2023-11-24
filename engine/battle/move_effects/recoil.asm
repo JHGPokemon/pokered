@@ -19,6 +19,12 @@ RecoilEffect_:
 	jr z, .gotRecoilDamage
 	srl b
 	rr c
+	cp TAKE_DOWN
+	jr z, .gotRecoilDamage
+	cp DOUBLE_EDGE
+	jr z, .gotRecoilDamage
+	srl b
+	rr c
 .gotRecoilDamage
 	ld a, b
 	or c

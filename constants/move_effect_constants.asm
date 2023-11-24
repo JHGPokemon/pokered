@@ -49,7 +49,7 @@
 	const TRAPPING_EFFECT            ; $2A moves like Wrap
 	const FLY_EFFECT                 ; $2B
 	const ATTACK_TWICE_EFFECT        ; $2C
-	const JUMP_KICK_EFFECT           ; $2D Jump Kick and Hi Jump Kick effect
+	const JUMP_KICK_EFFECT           ; $2D WILL REPLACE THIS WITH SOMETHING ELSE
 	const MIST_EFFECT                ; $2E
 	const FOCUS_ENERGY_EFFECT        ; $2F
 	const RECOIL_EFFECT              ; $30 moves like Double Edge

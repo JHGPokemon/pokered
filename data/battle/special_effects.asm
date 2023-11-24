@@ -14,7 +14,6 @@ SpecialEffects:
 	db SPECIAL_DAMAGE_EFFECT
 	db FLY_EFFECT
 	db ATTACK_TWICE_EFFECT
-	db JUMP_KICK_EFFECT
 	db RECOIL_EFFECT
 	; fallthrough
 SpecialEffectsCont:

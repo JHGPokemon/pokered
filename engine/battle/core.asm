@@ -3881,46 +3881,10 @@ PrintMoveFailureText:
 	ld [wCriticalHitOrOHKO], a
 	pop de
 	ld a, [de]
-	cp JUMP_KICK_EFFECT
-	ret nz
-
-	; if you get here, the mon used jump kick or hi jump kick and missed
-	ld hl, wDamage ; since the move missed, wDamage will always contain 0 at this point.
-	                ; Thus, recoil damage will always be equal to 1
-	                ; even if it was intended to be potential damage/8.
-	ld a, [hli]
-	ld b, [hl]
-	srl a
-	rr b
-	srl a
-	rr b
-	srl a
-	rr b
-	ld [hl], b
-	dec hl
-	ld [hli], a
-	or b
-	jr nz, .applyRecoil
-	inc a
-	ld [hl], a
-.applyRecoil
-	ld hl, KeptGoingAndCrashedText
-	call PrintText
-	ld b, $4
-	predef PredefShakeScreenHorizontally
-	ldh a, [hWhoseTurn]
-	and a
-	jr nz, .enemyTurn
-	jp ApplyDamageToPlayerPokemon
-.enemyTurn
-	jp ApplyDamageToEnemyPokemon
+	ret 
 
 AttackMissedText:
 	text_far _AttackMissedText
-	text_end
-
-KeptGoingAndCrashedText:
-	text_far _KeptGoingAndCrashedText
 	text_end
 
 PrintDoesntAffectText:
@@ -5042,7 +5006,7 @@ ApplyAttackToPlayerPokemonDone:
 
 AttackSubstitute:
 ; Unlike the two ApplyAttackToPokemon functions, Attack Substitute is shared by player and enemy.
-; Self-confusion damage as well as Hi-Jump Kick and Jump Kick recoil cause a momentary turn swap before being applied.
+; Self-confusion damage cause a momentary turn swap before being applied.
 ; If the user has a Substitute up and would take damage because of that,
 ; damage will be applied to the other player's Substitute.
 ; Normal recoil such as from Double-Edge isn't affected by this glitch,

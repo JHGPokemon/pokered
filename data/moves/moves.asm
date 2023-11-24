@@ -36,7 +36,7 @@ Moves:
 	move STOMP,        FLINCH_SIDE_EFFECT2,         65, NORMAL,       100, 20
 	move DOUBLE_KICK,  ATTACK_TWICE_EFFECT,         35, FIGHTING,     100, 15 ; 30 BP -> 35 BP
 	move MEGA_KICK,    NO_ADDITIONAL_EFFECT,       120, NORMAL,        75, 10 ; 5 pp -> 10 pp
-	move JUMP_KICK,    JUMP_KICK_EFFECT,            70, FIGHTING,      95, 25 ; Will change later
+	move JUMP_KICK,    RECOIL_EFFECT,               70, FIGHTING,      95, 25 ; Will change later
 	move ROLLING_KICK, FLINCH_SIDE_EFFECT2,         80, FIGHTING,      90, 15 ; 85 ACC -> 90 ACC , 60 BP -> 80 BP
 	move SAND_ATTACK,  ACCURACY_DOWN1_EFFECT,        0, NORMAL,       100, 15
 	move HEADBUTT,     FLINCH_SIDE_EFFECT2,         70, NORMAL,       100, 15
@@ -146,7 +146,7 @@ Moves:
 	move AMNESIA,      SPECIAL_UP2_EFFECT,           0, PSYCHIC_TYPE, 100, 15 ; 20 pp -> 15 pp
 	move KINESIS,      ACCURACY_DOWN1_EFFECT,        0, PSYCHIC_TYPE, 100, 15 ; 80 ACC -> 100 ACC
 	move SOFTBOILED,   HEAL_EFFECT,                  0, NORMAL,       100, 10
-	move HI_JUMP_KICK, JUMP_KICK_EFFECT,            85, FIGHTING,      90, 20 ; Will change later
+	move HI_JUMP_KICK, RECOIL_EFFECT,               85, FIGHTING,      90, 20 ; Will change later
 	move GLARE,        PARALYZE_EFFECT,              0, NORMAL,       100, 20 ; 30 pp -> 20 pp , 75 ACC -> 100 ACC
 	move DREAM_EATER,  DREAM_EATER_EFFECT,         100, PSYCHIC_TYPE, 100, 15
 	move POISON_GAS,   POISON_EFFECT,                0, POISON,        85, 20 ; 55 ACC -> 85 ACC

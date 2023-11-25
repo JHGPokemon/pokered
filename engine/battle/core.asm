@@ -5431,6 +5431,11 @@ MoveHitTest:
 	ret z ; Swift never misses (this was fixed from the Japanese versions)
 	call CheckTargetSubstitute ; substitute check (note that this overwrites a)
 	jr z, .noSubstitute
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	; MoveHitTest.swiftCheck
+	; "HP draining moves and Dream Eater may hit when they shouldn't" FIX 
+	ld a, [de]
+	;;;;;;;;;;;;;;;;;;;;;;;;;;;; END OF FIX
 	cp DRAIN_HP_EFFECT
 	jp z, .moveMissed
 	cp DREAM_EATER_EFFECT

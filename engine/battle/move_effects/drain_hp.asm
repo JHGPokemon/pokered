@@ -12,10 +12,6 @@ DrainHPEffect_:
 	inc hl
 	inc [hl]
 .getAttackerHP
-    push hl
-    farcall CheckTargetSubstitute 
-    pop hl 
-    jp nz, .cantDrain ; can't suck health from a substitute target
 	ld hl, wBattleMonHP
 	ld de, wBattleMonMaxHP
 	ldh a, [hWhoseTurn]
@@ -96,9 +92,6 @@ DrainHPEffect_:
 	cp DREAM_EATER_EFFECT
 	jr nz, .printText
 	ld hl, DreamWasEatenText
-.cantDrain
-	ld hl, CantDrainASubstituteText
-	jp PrintText
 .printText
 	jp PrintText
 
@@ -108,8 +101,4 @@ SuckedHealthText:
 
 DreamWasEatenText:
 	text_far _DreamWasEatenText
-	text_end
-
-CantDrainASubstituteText:
-	text_far _CantDrainASubstituteText
 	text_end

@@ -40,7 +40,7 @@ SubstituteEffect_:
 	;;;;;;;;;;;;;;;;;;;;
 	; SubstituteEffect_.notEnemy
 	; "Substitute may leave the user with 0 HP after it's used" FIX 
-	jr z, .notEnoughHP 
+	;jr z, .notEnoughHP ;                  ;;;;;; THIS TUTORIAL BREAKS SUBSTITUTE FOR LOW LEVEL POKEMON
 	;;;;;;;;;;;;;;;;;;;; END OF FIX
 .userHasZeroOrMoreHP
 	ldi [hl], a ; save resulting HP after subtraction into current HP

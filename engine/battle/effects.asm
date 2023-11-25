@@ -33,6 +33,8 @@ SleepEffect:
 	ld bc, wPlayerBattleStatus2
 
 .sleepEffect
+ 	call CheckTargetSubstitute 
+    jr nz, .didntAffect
 	ld a, [bc]
 	bit NEEDS_TO_RECHARGE, a ; does the target need to recharge? (hyper beam)
 	res NEEDS_TO_RECHARGE, a ; target no longer needs to recharge
@@ -1143,6 +1145,8 @@ RecoilEffect:
 	jpfar RecoilEffect_
 
 ConfusionSideEffect:
+	call CheckTargetSubstitute
+	ret nz
 	call BattleRandom
 	cp 10 percent ; chance of confusion
 	ret nc

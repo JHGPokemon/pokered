@@ -7,6 +7,10 @@ ParalyzeEffect_:
 	ld hl, wBattleMonStatus
 	ld de, wEnemyMoveType
 .next
+    push hl
+    farcall CheckTargetSubstitute 
+    pop hl 
+    jr nz, .doesntAffect ; can't paralyze a substitute target
 	ld a, [hl]
 	and a ; does the target already have a status ailment?
 	jr nz, .didntAffect

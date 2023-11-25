@@ -11,6 +11,10 @@ LeechSeedEffect_:
 	ld hl, wPlayerBattleStatus2
 	ld de, wBattleMonType1
 .leechSeedEffect
+	push hl
+    farcall CheckTargetSubstitute 
+    pop hl 
+    jr nz, .doesntAffect ; can't leech seed a substitute
 ; miss if the target is grass-type or already seeded
 	ld a, [de]
 	cp GRASS
@@ -30,6 +34,10 @@ LeechSeedEffect_:
 	call DelayFrames
 	ld hl, EvadedAttackText
 	jp PrintText
+.doesntAffect
+	ld c, 50
+	call DelayFrames
+	jpfar PrintDoesntAffectText
 
 WasSeededText:
 	text_far _WasSeededText

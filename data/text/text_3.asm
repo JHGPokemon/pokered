@@ -316,6 +316,11 @@ _DreamWasEatenText::
 	line "dream was eaten!"
 	prompt
 
+_CantDrainASubstituteText::
+	text "Sucked no health"
+	line "from <TARGET>!"
+	prompt
+
 _TradeCenterOpponentText::
 	text "!"
 	done

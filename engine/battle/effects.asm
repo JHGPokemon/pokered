@@ -352,6 +352,192 @@ FireDefrostedText:
 	text_far _FireDefrostedText
 	text_end
 
+AcupressureEffect:
+	ldh a, [hWhoseTurn]
+	and a 
+	jr z, .playerTurn
+	ld a, [wEnemyBattleStatus2]
+	bit HAS_SUBSTITUTE_UP, a
+	jp nz, PrintNothingHappenedText
+	ld a ,[wEnemyMonAttackMod] ; copy/paste next 3 lines basically
+	cp $d 
+	jr nz, .randomiseStatUpEffect
+	ld a, [wEnemyMonDefenseMod]
+	cp $d 
+	jr nz, .randomiseStatUpEffect
+	ld a, [wEnemyMonSpeedMod]
+	cp $d 
+	jr nz, .randomiseStatUpEffect
+	ld a, [wEnemyMonSpecialMod]
+	cp $d 
+	jr nz, .randomiseStatUpEffect
+	ld a, [wEnemyMonAccuracyMod]
+	cp $d 
+	jr nz, .randomiseStatUpEffect
+	ld a, [wEnemyMonEvasionMod]
+	cp $d 
+	jr nz, .randomiseStatUpEffect
+	jp PrintNothingHappenedText
+.playerTurn
+	ld a, [wPlayerBattleStatus2]
+	bit HAS_SUBSTITUTE_UP, a
+	jp nz, PrintNothingHappenedText
+	ld a, [wPlayerMonAttackMod]
+	cp $d 
+	jr nz, .randomiseStatUpEffect
+	ld a, [wPlayerMonDefenseMod]
+	cp $d 
+	jr nz, .randomiseStatUpEffect
+	ld a, [wPlayerMonSpeedMod]
+	cp $d 
+	jr nz, .randomiseStatUpEffect
+	ld a, [wPlayerMonSpecialMod]
+	cp $d 
+	jr nz, .randomiseStatUpEffect
+	ld a, [wPlayerMonAccuracyMod]
+	cp $d 
+	jr nz, .randomiseStatUpEffect
+	ld a, [wPlayerMonEvasionMod]
+	cp $d 
+	jr nz, .randomiseStatUpEffect
+	jp PrintNothingHappenedText
+.randomiseStatUpEffect
+    call BattleRandom
+	cp 213
+	jr nc, .attackRaise2
+	jr z, .attackRaise2
+	cp 171
+	jr nc, .defenseRaise2
+	jr z, .defenseRaise2
+	cp 129
+	jr nc, .speedRaise2
+	jr z, .speedRaise2
+	cp 87
+	jp nc, .specialRaise2
+	jp z, .specialRaise2
+	cp 45
+	jp nc, .accuracyRaise2
+	jp z, .accuracyRaise2
+	cp 3
+	jp nc, .evasionRaise2
+	jp z, .evasionRaise2
+	and a
+	jr nc, .randomiseStatUpEffect ;Just resetting this function basically. 
+.attackRaise2
+	ldh a, [hWhoseTurn]	
+	and a 
+	jr z, .playerATK2Raise
+	ld a, [wEnemyMonAttackMod]
+	cp $d 
+	jr z, .randomiseStatUpEffect
+	ld a, ATTACK_UP2_EFFECT
+	ld [wEnemyMoveEffect], a 
+	call StatModifierUpEffect
+	ret
+.playerATK2Raise
+	ld a, [wPlayerMonAttackMod]
+  	cp $d
+  	jr z, .randomiseStatUpEffect
+  	ld a, ATTACK_UP2_EFFECT
+	ld [wPlayerMoveEffect], a
+  	call StatModifierUpEffect
+	ret
+.defenseRaise2
+	ldh a, [hWhoseTurn]	
+	and a 
+	jr z, .playerDEF2Raise
+	ld a, [wEnemyMonDefenseMod]
+	cp $d 
+	jr z, .randomiseStatUpEffect
+	ld a, DEFENSE_UP2_EFFECT
+	ld [wEnemyMoveEffect], a 
+	call StatModifierUpEffect
+	ret
+.playerDEF2Raise
+	ld a, [wPlayerMonDefenseMod]
+  	cp $d
+  	jr z, .randomiseStatUpEffect
+	ld a, DEFENSE_UP2_EFFECT
+	ld [wPlayerMoveEffect],a
+  	call StatModifierUpEffect
+	ret
+.speedRaise2
+	ldh a, [hWhoseTurn]	
+	and a 
+	jr z, .playerSPEED2Raise
+	ld a, [wEnemyMonSpeedMod]
+	cp $d 
+	jp z, .randomiseStatUpEffect
+	ld a, SPEED_UP2_EFFECT
+	ld [wEnemyMoveEffect], a 
+	call StatModifierUpEffect
+	ret
+.playerSPEED2Raise
+	ld a, [wPlayerMonSpeedMod]
+ 	cp $d
+  	jp z, .randomiseStatUpEffect
+ 	ld a, SPEED_UP2_EFFECT
+	ld [wPlayerMoveEffect],a
+  	call StatModifierUpEffect
+	ret
+.specialRaise2
+	ldh a, [hWhoseTurn]	
+	and a 
+	jr z, .playerSPEC2Raise
+	ld a, [wEnemyMonSpecialMod]
+	cp $d 
+	jp z, .randomiseStatUpEffect
+	ld a, SPECIAL_UP2_EFFECT
+	ld [wEnemyMoveEffect], a 
+	call StatModifierUpEffect
+	ret
+.playerSPEC2Raise
+	ld a, [wPlayerMonSpecialMod]
+ 	cp $d
+  	jp z, .randomiseStatUpEffect
+	ld a, SPECIAL_UP2_EFFECT
+	ld [wPlayerMoveEffect],a
+  	call StatModifierUpEffect
+	ret
+.accuracyRaise2
+	ldh a, [hWhoseTurn]	
+	and a 
+	jr z, .playerACC2Raise
+	ld a, [wEnemyMonAccuracyMod]
+	cp $d 
+	jp z, .randomiseStatUpEffect
+	ld a, ACCURACY_UP2_EFFECT
+	ld [wEnemyMoveEffect], a 
+	call StatModifierUpEffect
+	ret
+.playerACC2Raise
+	ld a, [wPlayerMonAccuracyMod]
+ 	cp $d
+  	jp z, .randomiseStatUpEffect
+ 	ld a, ACCURACY_UP2_EFFECT
+	ld [wPlayerMoveEffect],a
+  	call StatModifierUpEffect
+	ret
+.evasionRaise2
+	ldh a, [hWhoseTurn]	
+	and a 
+	jr z, .playerEVA2Raise
+	ld a, [wEnemyMonEvasionMod]
+	cp $d 
+	jp z, .randomiseStatUpEffect
+	ld a, EVASION_UP2_EFFECT
+	ld [wEnemyMoveEffect], a 
+	call StatModifierUpEffect
+	ret
+.playerEVA2Raise
+	ld a, [wPlayerMonEvasionMod]
+ 	cp $d
+  	jp z, .randomiseStatUpEffect
+ 	ld a, EVASION_UP2_EFFECT
+	ld [wPlayerMoveEffect],a
+  	call StatModifierUpEffect
+	ret
+
 StatModifierUpEffect:
 	ld hl, wPlayerMonStatMods
 	ld de, wPlayerMoveEffect

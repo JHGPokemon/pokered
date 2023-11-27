@@ -359,47 +359,27 @@ AcupressureEffect:
 	ld a, [wEnemyBattleStatus2]
 	bit HAS_SUBSTITUTE_UP, a
 	jp nz, PrintNothingHappenedText
-	ld a ,[wEnemyMonAttackMod] ; copy/paste next 3 lines basically
-	cp $d 
-	jr nz, .randomiseStatUpEffect
-	ld a, [wEnemyMonDefenseMod]
-	cp $d 
-	jr nz, .randomiseStatUpEffect
-	ld a, [wEnemyMonSpeedMod]
-	cp $d 
-	jr nz, .randomiseStatUpEffect
-	ld a, [wEnemyMonSpecialMod]
-	cp $d 
-	jr nz, .randomiseStatUpEffect
-	ld a, [wEnemyMonAccuracyMod]
-	cp $d 
-	jr nz, .randomiseStatUpEffect
-	ld a, [wEnemyMonEvasionMod]
-	cp $d 
-	jr nz, .randomiseStatUpEffect
+	ld hl, wEnemyMonStatMods
+	ld b, 6
+.loopEnemyStatMod
+	ld a, [hli]
+	cp MAX_STAT_LEVEL
+	jr nz, .randomiseStatUpEffect 
+	dec b
+	jr nz, .loopEnemyStatMod 
 	jp PrintNothingHappenedText
 .playerTurn
 	ld a, [wPlayerBattleStatus2]
 	bit HAS_SUBSTITUTE_UP, a
 	jp nz, PrintNothingHappenedText
-	ld a, [wPlayerMonAttackMod]
-	cp $d 
-	jr nz, .randomiseStatUpEffect
-	ld a, [wPlayerMonDefenseMod]
-	cp $d 
-	jr nz, .randomiseStatUpEffect
-	ld a, [wPlayerMonSpeedMod]
-	cp $d 
-	jr nz, .randomiseStatUpEffect
-	ld a, [wPlayerMonSpecialMod]
-	cp $d 
-	jr nz, .randomiseStatUpEffect
-	ld a, [wPlayerMonAccuracyMod]
-	cp $d 
-	jr nz, .randomiseStatUpEffect
-	ld a, [wPlayerMonEvasionMod]
-	cp $d 
-	jr nz, .randomiseStatUpEffect
+	ld hl, wPlayerMonStatMods
+	ld b, 6
+.loopStatMod
+	ld a, [hli]
+	cp MAX_STAT_LEVEL
+	jr nz, .randomiseStatUpEffect 
+	dec b 
+	jr nz, .loopStatMod
 	jp PrintNothingHappenedText
 .randomiseStatUpEffect
     call BattleRandom
@@ -428,7 +408,7 @@ AcupressureEffect:
 	and a 
 	jr z, .playerATK2Raise
 	ld a, [wEnemyMonAttackMod]
-	cp $d 
+	cp MAX_STAT_LEVEL 
 	jr z, .randomiseStatUpEffect
 	ld a, ATTACK_UP2_EFFECT
 	ld [wEnemyMoveEffect], a 
@@ -436,7 +416,7 @@ AcupressureEffect:
 	ret
 .playerATK2Raise
 	ld a, [wPlayerMonAttackMod]
-  	cp $d
+  	cp MAX_STAT_LEVEL 
   	jr z, .randomiseStatUpEffect
   	ld a, ATTACK_UP2_EFFECT
 	ld [wPlayerMoveEffect], a
@@ -447,7 +427,7 @@ AcupressureEffect:
 	and a 
 	jr z, .playerDEF2Raise
 	ld a, [wEnemyMonDefenseMod]
-	cp $d 
+	cp MAX_STAT_LEVEL  
 	jr z, .randomiseStatUpEffect
 	ld a, DEFENSE_UP2_EFFECT
 	ld [wEnemyMoveEffect], a 
@@ -455,7 +435,7 @@ AcupressureEffect:
 	ret
 .playerDEF2Raise
 	ld a, [wPlayerMonDefenseMod]
-  	cp $d
+  	cp MAX_STAT_LEVEL 
   	jr z, .randomiseStatUpEffect
 	ld a, DEFENSE_UP2_EFFECT
 	ld [wPlayerMoveEffect],a
@@ -466,7 +446,7 @@ AcupressureEffect:
 	and a 
 	jr z, .playerSPEED2Raise
 	ld a, [wEnemyMonSpeedMod]
-	cp $d 
+	cp MAX_STAT_LEVEL  
 	jp z, .randomiseStatUpEffect
 	ld a, SPEED_UP2_EFFECT
 	ld [wEnemyMoveEffect], a 
@@ -474,7 +454,7 @@ AcupressureEffect:
 	ret
 .playerSPEED2Raise
 	ld a, [wPlayerMonSpeedMod]
- 	cp $d
+ 	cp MAX_STAT_LEVEL 
   	jp z, .randomiseStatUpEffect
  	ld a, SPEED_UP2_EFFECT
 	ld [wPlayerMoveEffect],a
@@ -485,7 +465,7 @@ AcupressureEffect:
 	and a 
 	jr z, .playerSPEC2Raise
 	ld a, [wEnemyMonSpecialMod]
-	cp $d 
+	cp MAX_STAT_LEVEL  
 	jp z, .randomiseStatUpEffect
 	ld a, SPECIAL_UP2_EFFECT
 	ld [wEnemyMoveEffect], a 
@@ -493,7 +473,7 @@ AcupressureEffect:
 	ret
 .playerSPEC2Raise
 	ld a, [wPlayerMonSpecialMod]
- 	cp $d
+ 	cp MAX_STAT_LEVEL 
   	jp z, .randomiseStatUpEffect
 	ld a, SPECIAL_UP2_EFFECT
 	ld [wPlayerMoveEffect],a
@@ -504,7 +484,7 @@ AcupressureEffect:
 	and a 
 	jr z, .playerACC2Raise
 	ld a, [wEnemyMonAccuracyMod]
-	cp $d 
+	cp MAX_STAT_LEVEL  
 	jp z, .randomiseStatUpEffect
 	ld a, ACCURACY_UP2_EFFECT
 	ld [wEnemyMoveEffect], a 
@@ -512,7 +492,7 @@ AcupressureEffect:
 	ret
 .playerACC2Raise
 	ld a, [wPlayerMonAccuracyMod]
- 	cp $d
+ 	cp MAX_STAT_LEVEL 
   	jp z, .randomiseStatUpEffect
  	ld a, ACCURACY_UP2_EFFECT
 	ld [wPlayerMoveEffect],a
@@ -523,7 +503,7 @@ AcupressureEffect:
 	and a 
 	jr z, .playerEVA2Raise
 	ld a, [wEnemyMonEvasionMod]
-	cp $d 
+	cp MAX_STAT_LEVEL  
 	jp z, .randomiseStatUpEffect
 	ld a, EVASION_UP2_EFFECT
 	ld [wEnemyMoveEffect], a 
@@ -531,7 +511,7 @@ AcupressureEffect:
 	ret
 .playerEVA2Raise
 	ld a, [wPlayerMonEvasionMod]
- 	cp $d
+ 	cp MAX_STAT_LEVEL 
   	jp z, .randomiseStatUpEffect
  	ld a, EVASION_UP2_EFFECT
 	ld [wPlayerMoveEffect],a

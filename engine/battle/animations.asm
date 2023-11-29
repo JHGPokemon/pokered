@@ -676,8 +676,13 @@ DoSpecialEffectByAnimationId:
 	push hl
 	push de
 	push bc
+	ld a, [wAltAnimationID]
+	and a
+	ld hl, AltAnimationIdSpecialEffects
+	jr nz, .usingAltAnimation
 	ld a, [wAnimationID]
 	ld hl, AnimationIdSpecialEffects
+.usingAltAnimation
 	ld de, 3
 	call IsInArray
 	jr nc, .done

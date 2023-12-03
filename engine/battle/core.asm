@@ -6646,6 +6646,7 @@ CalculateModifiedStat:
 	ret
 
 ApplyBadgeStatBoosts:
+	ret ; should just never be used if I do this
 	ld a, [wLinkState]
 	cp LINK_STATE_BATTLING
 	ret z ; return if link battle
